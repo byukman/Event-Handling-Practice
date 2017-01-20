@@ -38,19 +38,20 @@
     console.log(hatPic);
     // 2. Define the function that will respond to the event.
     var onMouseOver = function() {
-    	startButton.textContent += " Ready??????"; 
+    	startButton.textContent += " Ready??????";
     };
     var onButtonClick = function() {
-    	startButton.textContent = "Now click to put the hat on the puppy."
+    	startButton.textContent = "Now click on the puppy to put the hat on the puppy."
+    	startButton.removeEventListener("mouseover", onMouseOver);
     };
      var onHatClick = function(e) {
     	hat.style.top = e.clientY-25+"px";
     	hat.style.left = e.clientX-25+"px";
-    }
+    };
     // 3. Add the event listener for the element and function
     startButton.addEventListener("mouseover", onMouseOver);
     startButton.addEventListener("click", onButtonClick);
    	puppyPic.addEventListener("click", onHatClick);
-
     </script>
     </body>
+  
