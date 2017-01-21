@@ -5,9 +5,9 @@
         <title>Eventful Page</title>
         <style>
         	button{
-        		position: absolute;
-        		top:25px;
-        		left:25px;
+        		position: relative;
+        		top:15px;
+        		left:15px;
         		z-index: 1;
         	}
         	#puppy{
@@ -22,12 +22,16 @@
         		left:45px;
         		z-index: 3;
         	}
+        	h1{
+        		clear:both;
+        	}
         </style>
     </head>
     <body>
     <button id="clicker">Let's Get STARTED</button>
     <img id="puppy" src="C:\Users\Becki Yukman\Pictures\cheagle.jpg" alt="Cheagle Puppy" width=300px>
     <img id="hat" src="C:\Users\Becki Yukman\Pictures\hat.jpg" alt="Bowler Hat" width=75px>
+    <h1>The cat is coming in <span id="cat">30</span> seconds!</h1>
     <script>
     // 1. Find and store the element we want to listen to events on.
     var startButton = document.getElementById("clicker");
@@ -52,6 +56,21 @@
     startButton.addEventListener("mouseover", onMouseOver);
     startButton.addEventListener("click", onButtonClick);
    	puppyPic.addEventListener("click", onHatClick);
+
+   	// Step 1. What element do we want to animate?
+   	var theCat = document.getElementById("cat");
+   	// Step 2. What function will change it each time?
+   	var countDownIt = function() {
+   		var currentTime = parseFloat(theCat.textContent);
+   		if (currentTime > 0) {
+   			theCat.textContent = parseFloat(theCat.textContent) - 1;
+   		}
+   		else {
+   			window.clearInterval(timer);
+   		}
+   	}
+   	// Step 3: Call that on an interval
+   	var timer = window.setInterval(countDownIt, 1000);
     </script>
     </body>
   
