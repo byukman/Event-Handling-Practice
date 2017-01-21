@@ -31,7 +31,7 @@
     <button id="clicker">Let's Get STARTED</button>
     <img id="puppy" src="C:\Users\Becki Yukman\Pictures\cheagle.jpg" alt="Cheagle Puppy" width=300px>
     <img id="hat" src="C:\Users\Becki Yukman\Pictures\hat.jpg" alt="Bowler Hat" width=75px>
-    <h1>The cat is coming in <span id="cat">30</span> seconds!</h1>
+    <h1>The puppy goes bye-bye in <span id="cat">30</span> seconds!</h1>
     <script>
     // 1. Find and store the element we want to listen to events on.
     var startButton = document.getElementById("clicker");
@@ -40,6 +40,7 @@
     console.log(puppyPic);
     var hatPic = document.getElementById("hat");
     console.log(hatPic);
+
     // 2. Define the function that will respond to the event.
     var onMouseOver = function() {
     	startButton.textContent += " Ready??????";
@@ -52,13 +53,15 @@
     	hat.style.top = e.clientY-25+"px";
     	hat.style.left = e.clientX-25+"px";
     };
-    // 3. Add the event listener for the element and function
+   
+       // 3. Add the event listener for the element and function
     startButton.addEventListener("mouseover", onMouseOver);
     startButton.addEventListener("click", onButtonClick);
    	puppyPic.addEventListener("click", onHatClick);
 
    	// Step 1. What element do we want to animate?
    	var theCat = document.getElementById("cat");
+
    	// Step 2. What function will change it each time?
    	var countDownIt = function() {
    		var currentTime = parseFloat(theCat.textContent);
@@ -67,10 +70,21 @@
    		}
    		else {
    			window.clearInterval(timer);
+
    		}
    	}
+   	  var startTime = new Date().getTime();
+  	  var makeItSmaller = function() {
+      	var currTime = new Date().getTime();
+      	var newWidth = (250 - ((currTime - startTime)/1000) * 6);
+       	puppyPic.style.width = newWidth + "px";  
+    	window.requestAnimationFrame(makeItSmaller);
+    }
+
    	// Step 3: Call that on an interval
    	var timer = window.setInterval(countDownIt, 1000);
+   	makeItSmaller();
+
     </script>
     </body>
   
